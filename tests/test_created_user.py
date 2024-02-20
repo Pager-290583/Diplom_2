@@ -10,8 +10,20 @@ end_point_creat_user = f'{Constants.END_POINT_CREAT_USER}'
 headers = {"Content-Type": "application/json"}
 
 
+@allure.epic("Тестирование АПИ")
+@allure.feature("Создание пользователя")
 class TestCreateCourier:
-
+    @allure.story("POST запрос на создать уникального пользователя")
+    @allure.title('Тестирование валидации при создании нового пользователя в системе')
+    @allure.description("В этом тесте проходит валидация статус кодов и тела ответа."
+                        " Статус 201 success: True")
+    @allure.tag("NewAPI", "Essentials", "CreatUser")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label("owner", "Kozlov Oleg")
+    @allure.link("https://stellarburgers.nomoreparties.site", name="Website")
+    @allure.issue("CREAT-01")
+    @allure.testcase("TMS-01")
+    @allure.step("Отправка POST запроса с заголовком и данными нового пользователя")
     @pytest.mark.parametrize(("data", "status_code"), [
         (
                 pytest.param(DataForTest.data_200, 200)
@@ -21,6 +33,17 @@ class TestCreateCourier:
         response = requests.post(base_url + end_point_creat_user, headers=headers, json=data).json()
         assert status_code == 200 and response['success'] == True
 
+    @allure.story("POST запрос на создать пользователя, который уже зарегистрирован")
+    @allure.title('Тестирование валидации при создании нового пользователя в системе')
+    @allure.description("В этом тесте проходит валидация статус кодов и тела ответа."
+                        " Статус 201 success: True")
+    @allure.tag("NewAPI", "Essentials", "CreatUser")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label("owner", "Kozlov Oleg")
+    @allure.link("https://stellarburgers.nomoreparties.site", name="Website")
+    @allure.issue("CREAT-02")
+    @allure.testcase("TMS-02")
+    @allure.step("Отправка POST запроса для создания пользователя, который уже зарегистрирован")
     @pytest.mark.parametrize(("data", "status_code", "json"), [
         (
                 pytest.param(DataForTest.data_403, 403,

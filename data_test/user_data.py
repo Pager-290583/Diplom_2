@@ -8,7 +8,7 @@ class DataForTest:
         "name": "Username"
     }
 
-    data_403 = {
+    data_double = {
         "email": 'kov290583@yandex.ru',
         "password": "password",
         "name": "Username"
@@ -18,4 +18,9 @@ class DataForTest:
         "email": f'test+{datetime.now().strftime("%m%d%Y%H%M%S")}@yandex.ru',
         "password": "password",
         "name": ""
+    }
+
+    data_login_fail = {
+        "login": "",
+        "password": "1234"
     }
