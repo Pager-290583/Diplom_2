@@ -29,7 +29,7 @@ class TestCreateCourier:
                 pytest.param(DataForTest.data_200, 200)
         )
     ])
-    def test_create_courier(self, data, status_code):
+    def test_create_user(self, data, status_code):
         response = requests.post(base_url + end_point_creat_user, headers=headers, json=data).json()
         assert status_code == 200 and response['success'] == True
 
@@ -46,7 +46,7 @@ class TestCreateCourier:
     @allure.step("Отправка POST запроса для создания пользователя, который уже зарегистрирован")
     @pytest.mark.parametrize(("data", "status_code", "json"), [
         (
-                pytest.param(DataForTest.data_403, 403,
+                pytest.param(DataForTest.data_double, 403,
                              {"success": False, "message": "User already exists"})
         ),
         (
@@ -54,7 +54,7 @@ class TestCreateCourier:
                              {"success": False, "message": "Email, password and name are required fields"})
         )
     ])
-    def test_create_courier_fail(self, data, status_code, json):
+    def test_create_user_fail(self, data, status_code, json):
         response = requests.post(base_url + end_point_creat_user, headers=headers, json=data)
         assert response.status_code == status_code
         assert response.json() == json

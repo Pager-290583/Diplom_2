@@ -30,7 +30,7 @@ class TestLoginUser:
                 pytest.param(DataForTest.data_double, 200)
         )
     ])
-    def test_login_courier_correct(self, data, status_code):
+    def test_login_user_correct(self, data, status_code):
         response = requests.post(base_url + end_point_login_user, headers=headers, json=data).json()
         assert response['success'] == True
 
@@ -53,7 +53,7 @@ class TestLoginUser_2:
                 pytest.param(DataForTest.data_login_fail, 400)
         )
         ])
-    def test_login_courier_fail(self, data, status_code):
+    def test_login_user_fail(self, data, status_code):
         response = requests.post(base_url + end_point_login_user, headers=headers, json=data).json()
         assert response['message'] == "email or password are incorrect"
 
