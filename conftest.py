@@ -7,3 +7,4 @@ from data_test.user_data import DataForTest
 def user_data():
     user_data = DataForTest()
     return user_data
+
