@@ -24,3 +24,15 @@ class DataForTest:
         "login": "",
         "password": "1234"
     }
+
+    data_user = {
+        "email": "kov290583+23@yandex.ru",
+        "password": "password",
+        "name": "Stat"
+    }
+
+    updated_profile = {
+        "email": "kov290583+23@yandex.ru",
+        "password": "password",
+        "name": "Oleg"
+    }

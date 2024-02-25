@@ -6,9 +6,6 @@ from data_test.user_data import DataForTest
 from data_test.constants import Constants
 
 
-headers = {"Content-Type": "application/json"}
-
-
 @allure.epic("Логин пользователя")
 @allure.feature("Авторизация пользователя")
 class TestLoginUser:
@@ -30,7 +27,8 @@ class TestLoginUser:
         )
     ])
     def test_login_user_correct(self, data, status_code):
-        response = requests.post(Constants.URL + Constants.END_POINT_LOGIN_USER, headers=headers, json=data).json()
+        response = requests.post(Constants.URL + Constants.END_POINT_LOGIN_USER, headers=Constants.headers,
+                                 json=data).json()
         assert response['success'] == True
 
 
@@ -50,6 +48,7 @@ class TestLoginUser:
         )
         ])
     def test_login_user_fail(self, data, status_code):
-        response = requests.post(Constants.URL + Constants.END_POINT_LOGIN_USER, headers=headers, json=data).json()
+        response = requests.post(Constants.URL + Constants.END_POINT_LOGIN_USER, headers=Constants.headers,
+                                 json=data).json()
         assert response['message'] == "email or password are incorrect"
 

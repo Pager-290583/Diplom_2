@@ -5,10 +5,6 @@ import requests
 from data_test.user_data import DataForTest
 from data_test.constants import Constants
 
-base_url = f'{Constants.URL}'
-end_point_creat_user = f'{Constants.END_POINT_CREAT_USER}'
-headers = {"Content-Type": "application/json"}
-
 
 @allure.epic("Тестирование АПИ")
 @allure.feature("Создание пользователя")
@@ -30,7 +26,8 @@ class TestCreateCourier:
         )
     ])
     def test_create_user(self, data, status_code):
-        response = requests.post(base_url + end_point_creat_user, headers=headers, json=data).json()
+        response = requests.post(Constants.URL + Constants.END_POINT_CREAT_USER, headers=Constants.headers,
+                                 json=data).json()
         assert status_code == 200 and response['success'] == True
 
     @allure.story("POST запрос на создать пользователя, который уже зарегистрирован")
@@ -55,6 +52,6 @@ class TestCreateCourier:
         )
     ])
     def test_create_user_fail(self, data, status_code, json):
-        response = requests.post(base_url + end_point_creat_user, headers=headers, json=data)
+        response = requests.post(Constants.URL + Constants.END_POINT_CREAT_USER, headers=Constants.headers, json=data)
         assert response.status_code == status_code
         assert response.json() == json
