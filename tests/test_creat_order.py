@@ -16,7 +16,7 @@ class TestCreateOrder:
     ])
     @allure.step("Создания заказа без авторизации с ингредиентами")
     def test_create_order_01(self, data, status_code):
-        response = requests.post(Constants.URL + Constants.END_POINT_CREAT_ORDER, headers=Constants.headers,
+        response = requests.post(Constants.URL + Constants.END_POINT_ORDER, headers=Constants.headers,
                                  json=data).json()
         assert (status_code == 200 and response['success'] == True
                 and response['name'] == "Бессмертный флюоресцентный бургер")

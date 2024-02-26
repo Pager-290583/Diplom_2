@@ -6,20 +6,6 @@ from data_test.constants import Constants
 from data_test.user_data import DataForTest
 
 
-data_user = {
-        "email": "kov290583+23@yandex.ru",
-        "password": "password",
-        "name": "Stat"
-    }
-
-updated_profile = {
-        "email": "kov290583+23@yandex.ru",
-        "password": "password",
-        "name": "Oleg"
-    }
-
-
-
 @allure.epic("Обновление данных юзера")
 @allure.feature("Обновляем имя пользователя")
 class TestUpdateDataUser:
