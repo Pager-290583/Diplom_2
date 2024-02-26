@@ -6,6 +6,20 @@ from data_test.constants import Constants
 from data_test.user_data import DataForTest
 
 
+data_user = {
+        "email": "kov290583+23@yandex.ru",
+        "password": "password",
+        "name": "Stat"
+    }
+
+updated_profile = {
+        "email": "kov290583+23@yandex.ru",
+        "password": "password",
+        "name": "Oleg"
+    }
+
+
+
 @allure.epic("Обновление данных юзера")
 @allure.feature("Обновляем имя пользователя")
 class TestUpdateDataUser:
@@ -17,7 +31,7 @@ class TestUpdateDataUser:
         return new_token
 
     @allure.story("PATCH запрос на обновление данных юзера с авторизацией")
-    @allure.title('Проверка авторизации в системе с валидными и невалидными данными')
+    @allure.title('Проверка возможности обновления даных юзера с валидным токеном')
     @allure.description("В этом тесте мы отправляем обновление данных юзера. Меняем имя.")
     @allure.tag("NewAPI", "Essentials", "UpdateUser")
     @allure.severity(allure.severity_level.CRITICAL)
@@ -26,15 +40,14 @@ class TestUpdateDataUser:
     @allure.issue("UpdateUser-05")
     @allure.testcase("TMS-05")
     @allure.step("Получаем токен и отправляем данные для изменения Имени")
-    def test_updated_login_profile(self):
+    def test_updated_data_profile(self):
         new_token = self.get_token()
         response = requests.patch(Constants.URL + Constants.END_POINT_UPDATE_USER,
-                                  headers={'Authorization': new_token}, data=DataForTest.data_double)
-
+                                  headers={'Authorization': new_token}, data=DataForTest.updated_profile)
         assert response.status_code == 200 and response.json()['user']['name'] == 'Oleg'
 
     @allure.story("В этом тесте мы проверяем попытку обновления данных юзера без авторзации")
-    @allure.title('Проверка авторизации в системе с валидными и невалидными данными')
+    @allure.title('Проверка возможности изменить даные юзера без авторизации')
     @allure.description("В этом тесте мы отправляем обновление данных юзера. Меняем имя.")
     @allure.tag("NewAPI", "Essentials", "UpdateUser")
     @allure.severity(allure.severity_level.CRITICAL)
