@@ -28,7 +28,7 @@ class TestCreateOrder:
     ])
     @allure.step("Создания заказа без авторизации без ингредиентов")
     def test_create_order_02(self, data):
-        response = requests.post(Constants.URL + Constants.END_POINT_CREAT_ORDER, headers=Constants.headers,
+        response = requests.post(Constants.URL + Constants.END_POINT_ORDER, headers=Constants.headers,
                                  json=data)
         assert response.status_code == 400
         assert response.text == '{"success":false,"message":"Ingredient ids must be provided"}'
@@ -40,7 +40,7 @@ class TestCreateOrder:
     ])
     @allure.step("Создания заказа без авторизации с неверным хешем ингредиентов")
     def test_create_order_03(self, data):
-        response = requests.post(Constants.URL + Constants.END_POINT_CREAT_ORDER, headers=Constants.headers,
+        response = requests.post(Constants.URL + Constants.END_POINT_ORDER, headers=Constants.headers,
                                  json=data)
         assert response.status_code == 400
         assert response.text == '{"success":false,"message":"One or more ids provided are incorrect"}'
