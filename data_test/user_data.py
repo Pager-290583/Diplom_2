@@ -22,7 +22,7 @@ class DataForTest:
 
     data_login_fail = {
         "login": "",
-        "password": "1234"
+        "password": ""
     }
 
     data_user = {
